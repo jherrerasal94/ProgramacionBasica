@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta>
+    <title>Tu peso en un lugar donde pesas menos</title>
+  </head>
+  <body>
+    <form
+    onsubmit="
+      event.preventDefault();
+      calcularPeso(
+        document.forms[0].pesoActual.value,
+        document.forms[0].pesoPlaneta.options[document.forms[0].pesoPlaneta.selectedIndex].value);">
+      <label for="">Peso actual:</label>
+      <input type="text" name="pesoActual" id="pesoActual" required>
+      <label for="">Planeta:</label>
+      <select name="pesoPlaneta" id="pesoPlaneta" required>
+        <option value="">- Selecciona -</option>
+        <option value="9.8">Tierra</option>
+        <option value="3.7">Marte</option>
+        <option value="24.8">Jupiter</option>
+      </select>
+      <button>Calcular peso</button>
+      <label for="">Tu peso en el planeta seleccionado es:</label>
+      <input type="text" name="pesoFinal" id="pesoFinal">
+    </form>
+
+    <style>
+    form {
+      background-color: #c3c3c3;
+      width: 50%;
+      height: 300px;
+      padding: 1%;
+      margin: auto;
+    }
+    input {
+      width: 90%;
+      height: 30px;
+      margin: 2%;
+    }
+    select {
+      width: 90%;
+      height: 30px;
+      margin: 2%;
+    }
+    button {
+      width: 90%;
+      height: 30px;
+      margin: 2%;
+    }
+    </style>
+
+    <script>
+      function calcularPeso(pActual, pPlaneta){
+        var pesoActual = pActual;
+        var pesoPlaneta = pPlaneta;
+        var pesoFinal;
+        var pesoTierra = 9.8;
+
+        pesoFinal = pesoActual * pPlaneta / pesoTierra;
+        pesoFinal = parseInt(pesoFinal);
+        document.forms[0].pesoFinal.value = pesoFinal;
+      }
+    </script>
+
+  </body>
+</html>
