@@ -66,59 +66,98 @@
       dibujarTrazo("blue", 200, 100, 150, 150);-15,-25
       dibujarTrazo("red", 175, 85, 150, 150);-25,-15
       */
-      var xyz = 0;
-      var validX = 0;
-      var xJ = 150;
-      var yJ = 80;
-      var veinticinco = 0;
-      var quince = 0;
-      var cinco = 0;
-      var signoX = 0;
+      var objPuntos = {
+      	"grafica": "1",
+	      "descripcion": "circulo",
+	      "puntos": []
+      };
+      
+      diagramar(150, 80, objPuntos, 0, 0, 0, 3, 12, 17);
+      diagramar(80, 150, objPuntos, 2, 1, 1, -1, 8, 17);
+      console.log(objPuntos);
+      pintarCirculo(objPuntos)
+      function diagramar(puntoEnXInicial, puntoEnYInicial, objeto, val25, val15, val5, v1, v2, v3){
+        //ciclo grafico
+        /*
+        25
+        25
+          15
+            5
+            5
+          15
+        25
+        25
+        */
+        var i = 0;
+        var cantidadLineas = 15;
+        var puntoX = puntoEnXInicial;
+        var puntoY = puntoEnYInicial;
+        var signoX = 0;
+        //punto de partida, 0 es el valor inicial, si todos los valores entan en cero quiere decir 
+        //que el ciclo inicia
+        var veinticinco = val25;
+        var quince = val15;//
+        var cinco = val5;//
 
-      var mivarX = "";
-      var mivarXY = "";
-      for(i = 0; i < 15; i++){
-        dibujarTrazo("blue", xJ, yJ, 150, 150);
-        signoX = 1;
-        if(i <= 3){
-          signoX = -1;
-        }else if(i >= 12 && i <= 17){
-          signoX = -1;
-        }
-
-        if(veinticinco <=1){
-          veinticinco++;
-          xJ = xJ + (25 * signoX);
-          if(veinticinco > 1 && quince > 0 && cinco > 1){
-            veinticinco = 0;
-            quince = 0;
-            cinco = 0;
+        //Se recorre la cantidad de puntos a realizar
+        for(i = 0; i < cantidadLineas; i++){
+          //Asignamos los signos para sumar o restar
+          signoX = 1;
+          if(i <= v1){
+            signoX = -1;
+          }else if(i >= v2 && i <= v3){
+            signoX = -1;
           }
-        }else if(veinticinco > 1 && quince <= 0){
-          quince++;
-          xJ = xJ + (15 * signoX);
-          if(veinticinco == 100){
-            veinticinco = 0;
-          }
-        }else if(veinticinco > 1 && quince > 0 && cinco <= 1){
-          cinco++;
-          xJ = xJ + (5 * signoX);
-          if(veinticinco > 1 && quince > 0 && cinco > 1){
-            if(veinticinco == 100){
+          //Se valida el ciclo, el 25 tiene dos puntos consecutivos al inicio y al fin
+          if(veinticinco <= 1){
+            veinticinco++;
+            puntoX = puntoX + (25 * signoX);
+            if(veinticinco > 1 && quince > 0 && cinco > 1){
               veinticinco = 0;
-            }else if(veinticinco < 100){
-              quince = 0;
-              veinticinco = 100;
-            }else{
-              veinticinco = 100;
               quince = 0;
               cinco = 0;
             }
+            //Se valida el ciclo, el 15 tiene un punto despues del 25 y despues del 5
+          }else if(veinticinco > 1 && quince <= 0){
+            quince++;
+            puntoX = puntoX + (15 * signoX);
+            if(veinticinco == 100){
+              veinticinco = 0;
+            }
+          }else if(veinticinco > 1 && quince > 0 && cinco <= 1){
+            cinco++;
+            puntoX = puntoX + (5 * signoX);
+            if(veinticinco > 1 && quince > 0 && cinco > 1){
+              if(veinticinco == 100){
+                veinticinco = 0;
+              }else if(veinticinco < 100){
+                quince = 0;
+                veinticinco = 100;
+              }else{
+                veinticinco = 100;
+                quince = 0;
+                cinco = 0;
+              }
+            }
+          }
+          puntos = objeto.puntos;
+          if(puntos[i] == undefined){
+            puntos.push(puntoX);
+          }else{
+            puntos[i] = puntos[i] + "," + puntoX;
           }
         }
-        console.log(xJ);
-        mivarX = xJ + "," + mivarX;
-        dibujarTrazo("blue", xJ, yJ, 150, 150);
+      }
+      function pintarCirculo(objeto){
+        
+        puntos = objeto.puntos;
+        var cantidadLineas = 14;
+        var i = 0;
+        dibujarTrazo("#cfdecc", 150, 80, 150, 150);
+          for(i = 0; i <= cantidadLineas; i++){
+              dibujarTrazo("#cfdecc", puntos[i].split(",")[0], puntos[i].split(",")[1], 150, 150)
+          }
+          lienzo.clean;
       }
     </script>
 
