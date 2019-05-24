@@ -171,9 +171,9 @@ function cambiarAnimal(){
     var animalSeleccionado = document.getElementsByName("animal");
     
     for(var i = 0; i <= animalSeleccionado.length - 1; i++){
-        console.log(animalSeleccionado[i].value);
         if(animalSeleccionado[i].checked){
             animalEnMovimiento = animalSeleccionado[i].value;
+            animalSeleccionado[i].blur();
         }
     }
 }
