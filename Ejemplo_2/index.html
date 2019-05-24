@@ -4,11 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+    <link rel=StyleSheet href="villa.css" type="text/css" media="screen">
     <title>Villa PC</title>
 </head>
-<body>
-    <canvas width="500" height="500" id="marcoTrabajo"></canvas>
+<body onkeydown="moverElemento(event)">
+    <div id="contenedor">
+        <div id="cont-mapa">
+            <canvas width="500" height="500" id="marcoTrabajo"></canvas>
+        </div>
+        <div id="opciones">
+            <div>
+                <input type="radio" name="animal" value="VACA" onchange="cambiarAnimal()">
+                <img src="vaca.png" width="80" height="80">
+            </div>
+            <div>
+                <input type="radio" name="animal" value="POLLO" onchange="cambiarAnimal()">
+                <img src="pollo.png" width="80" height="80">
+            </div>
+            <div>
+                <input type="radio" name="animal" value="CERDO" onchange="cambiarAnimal()">
+                <img src="cerdo.png" width="80" height="80">
+            </div>
+        </div>
+    </div>
     <script src="villa.js"></script>
 </body>
 </html>

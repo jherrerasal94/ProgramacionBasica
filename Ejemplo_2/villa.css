@@ -1,0 +1,14 @@
+#contenedor{
+    display: inline;
+}
+#opciones{
+    float: left;
+    background-color: #1a6655;
+    width: 150px;
+    height: 500px;
+}
+#cont-mapa{
+    width: 500px;
+    height: 500px;
+    float: left;
+}
